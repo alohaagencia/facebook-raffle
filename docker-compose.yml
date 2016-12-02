@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  app:
+    image: webdevops/php-nginx:ubuntu-16.04
+    container_name: facebook-raffle-app
+    volumes:
+      - ./:/var/www
+    ports:
+      - 8080:80
+    environment:
+      WEB_DOCUMENT_ROOT: /var/www/public
