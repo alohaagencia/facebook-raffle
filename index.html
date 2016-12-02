@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#4a82bb">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <style>
+    @font-face {
+      font-family: 'Lasting Love';
+      src: url('fonts/lastinglove/lastinglove.woff');
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .main {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: column;
+      background-image: radial-gradient(#2362a2, #013870);
+    }
+      h4 { color: #fff; }
+
+      .form-group {
+        outline: none;
+        box-shadow: none;
+      }
+
+      .form-group input {
+        width: 100% !important;
+      }
+
+      .form .btn,
+      .form input {
+        text-transform: uppercase
+      }
+
+      .form .btn,
+      .form input,
+      .form btn:focus,
+      .form btn:active,
+      .form input:focus {
+        height: 40px;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .random-person {
+        margin-top: 25px;
+        margin-bottom: 25px;
+      }
+        .random-person a {
+          color: #fff;
+          margin-bottom: 15px;
+        }
+          .random-person a:hover { text-decoration: none; }
+
+        .random-person img {
+          display: block;
+          max-width: 100%;
+        }
+
+    .winners {
+      width: 100%;
+      display: block;
+      padding: 15px 0;
+      background-color: #ffffff;
+    }
+      .winners h4,
+      .winners h3 a {
+        color: #111;
+        font-style: italic;
+      }
+
+    footer {
+      display: block;
+      padding: 30px 0;
+      color: #ffffff;
+    }
+
+    footer a {
+      color: #fff;
+      font-size: 25px;
+      font-family: 'Lasting Love';
+    }
+  </style>
+
+  <title>Sorteio</title>
+</head>
+<body>
+  <main class="main">
+    <div class="container">
+      <h4 class="text-center">Adicione abaixo o número de pessoas que serão sorteadas</h4><!-- /.text-center -->
+
+      <form class="form form-inline col-sm-8 col-sm-offset-2">
+        <div class="form-group">
+          <input type="text" class="form-control iterator" placeholder="Quantidade de sorteios">
+        </div><!-- /.form-group -->
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Link">
+        </div><!-- /.form-group -->
+        <button class="btn btn-success">Iniciar sorteio</button>
+      </form>
+
+      <div class="random-person col-sm-4 col-sm-offset-4"></div><!-- /.random-person -->
+    </div><!-- /.container -->
+
+    <div class="winners">
+      <h4 class="text-center text-uppercase">Sorteados:</h4><!-- /.text-center text-uppercase -->
+      <div class="container"></div><!-- /.container -->
+    </div><!-- /.winners -->
+
+    <footer>
+      <div class="container">
+        <div class="text-center">
+          <p><strong>&copy; Aloha - Marketing Digital | CNPJ: 21.064.466/0111-20</strong></p>
+          <p><strong>R. Ver. Basílio Sautchuk, 896 - Sala 03 - Novo Centro - Maringá/PR - CEP: 87013-190</strong></p>
+          <a href="//alohaagencia.com.br" target="_blank">AloHa</a>
+        </div><!-- /.text-center -->
+      </div><!-- /.container -->
+    </footer>
+  </main><!-- /.main -->
+
+  <script src="//code.jquery.com/jquery-3.1.1.js"></script>
+  <script src="scripts/app.js"></script>
+
+  <script>
+    var $ = window.jQuery
+
+    $(function () {
+      $('.form').on('submit', function (event) {
+        event.preventDefault()
+        window.lottery($('.iterator').val(), 'http://localhost:3000/pessoas')
+      })
+    })
+  </script>
+</body>
+</html>
