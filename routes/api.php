@@ -35,18 +35,10 @@ $app->post('/api/users', function (Request $request, Response $response) {
             'default_access_token' => $this->get('services')['facebook']['app_default_access_token'],
         ]);
 
-        $facebookResponse = $facebook->get(sprintf('%s/comments?limit=100', $postId));
-
-        foreach ($facebookResponse->getGraphEdge() as $item) {
-            $from = $item->asArray()['from'];
-
-            $users[] = [
-                'name' => $from['name'],
-                'link' => '//facebook.com/'.$from['id'],
-            ];
-        }
+        $users = getRecursiveResults(sprintf('%s/likes?limit=500&fields=id,name,pic_large', $postId), $facebook);
 
         return $response->withStatus(200)->withJson([
+            'total' => count($users),
             'data' => $users,
         ]);
     } catch (Exception $e) {
@@ -55,3 +47,25 @@ $app->post('/api/users', function (Request $request, Response $response) {
         ]);
     }
 });
+
+function getRecursiveResults($url, $facebook, $results = [])
+{
+    $facebookResponse = $facebook->get($url);
+    $facebookResults = $facebookResponse->getGraphEdge();
+
+    foreach ($facebookResults as $item) {
+        $user = $item->asArray();
+
+        $results[] = [
+            'name' => $user['name'],
+            'profile' => sprintf('https://facebook.com/%s', $user['id']),
+            'profile_picture' => $user['pic_large'],
+        ];
+    }
+
+    if ($facebookResults->getNextPageRequest()) {
+        return getRecursiveResults($facebookResults->getNextPageRequest()->getEndpoint(), $facebook, $results);
+    }
+
+    return $results;
+}
