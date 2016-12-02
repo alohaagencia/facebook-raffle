@@ -5,7 +5,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 // Version
 $app->get('/', function (Request $request, Response $response) {
-    return $response->withStatus(200)->write('Welcome to Facebook Raffle v0.1.0');
+    $message = sprintf('Welcome to %s %s', $this->get('app')['name'], $this->get('app')['version']);
+
+    return $response->withStatus(200)->write($message);
 });
 
 // Users

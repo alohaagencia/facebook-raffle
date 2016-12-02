@@ -3,7 +3,15 @@
 use Slim\App;
 use Slim\Container;
 
-$config = require __DIR__.'/../config/app.php';
+$files = glob(__DIR__.'/../config/*.php');
+
+$config = [];
+
+foreach ($files as $file) {
+    $setting = pathinfo($file, PATHINFO_FILENAME);
+    $options = require $file;
+    $config[$setting] = $options;
+}
 
 $container = new Container($config);
 
