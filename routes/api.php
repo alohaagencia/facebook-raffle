@@ -9,6 +9,14 @@ $app->get('/', function (Request $request, Response $response) {
 });
 
 // Users
-$app->post('/api/users', function (Request $request, Response $respose) {
-    echo '<pre>', print_r($request, true), '</pre>';
+$app->post('/api/users', function (Request $request, Response $response) {
+    $post = $request->getParsedBody();
+
+    if (! array_key_exists('link', $post) || ! filter_var($post['link'], FILTER_VALIDATE_URL)) {
+        return $response->withStatus(422)->withJson([
+            'error' => 'Invalid facebook post link.',
+        ]);
+    }
+
+    $link = $post['link'];
 });
