@@ -4,8 +4,7 @@ use Slim\App;
 use Dotenv\Dotenv;
 use Slim\Container;
 
-$dotenv = new Dotenv(__DIR__.'/..');
-$dotenv->load();
+(new Dotenv(__DIR__.'/..'))->load();
 
 $files = glob(__DIR__.'/../config/*.php');
 
