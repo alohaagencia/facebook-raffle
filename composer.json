@@ -1,7 +1,0 @@
-{
-    "require": {
-        "slim/slim": "~3.0",
-        "facebook/graph-sdk": "~5.4",
-        "vlucas/phpdotenv": "~2.4"
-    }
-}

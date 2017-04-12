@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="theme-color" content="#4a82bb">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
 
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -55,6 +54,10 @@
         box-shadow: none;
       }
 
+      .form .btn {
+        margin: 0 auto;
+      }
+
       .random-person {
         margin-top: 25px;
         margin-bottom: 25px;
@@ -102,14 +105,11 @@
     <div class="container">
       <h4 class="text-center">Adicione abaixo o número de pessoas que serão sorteadas</h4><!-- /.text-center -->
 
-      <form class="form form-inline col-sm-8 col-sm-offset-2">
+      <form class="form col-sm-8 col-sm-offset-2">
         <div class="form-group">
-          <input type="text" class="form-control iterator" placeholder="Quantidade de sorteios">
+          <input type="text" class="form-control link" placeholder="Link">
         </div><!-- /.form-group -->
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Link">
-        </div><!-- /.form-group -->
-        <button class="btn btn-success">Iniciar sorteio</button>
+        <button class="btn btn-success">Sortear</button>
       </form>
 
       <div class="random-person col-sm-4 col-sm-offset-4"></div><!-- /.random-person -->
@@ -133,16 +133,5 @@
 
   <script src="//code.jquery.com/jquery-3.1.1.js"></script>
   <script src="scripts/app.js"></script>
-
-  <script>
-    var $ = window.jQuery
-
-    $(function () {
-      $('.form').on('submit', function (event) {
-        event.preventDefault()
-        window.lottery($('.iterator').val(), 'http://localhost:3000/pessoas')
-      })
-    })
-  </script>
 </body>
 </html>

@@ -1,23 +1,10 @@
 # Facebook Raffle
 
-### Up and running
-
-Clone the project.
+### Up and Running
 
 ``` bash
-$ git clone git@github.com:alohaagencia/facebook-raffle.git
+$ git clone git clone git@github.com:alohaagencia/facebook-raffle.git
+$ cd facebook-raffle
+$ npm install
+$ npm run dev
 ```
-
-Install the composer dependencies.
-
-``` bash
-$ composer install
-```
-
-Start the server.
-
-``` bash
-$ docker-compose up -d
-```
-
-Visit http://localhost:8080
